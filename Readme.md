@@ -4,7 +4,7 @@ Web server built in Node.js for the backend of the Distributed Applications proj
 
 ## Heroku cloud deployed version
 
-If you want to view the project without having to install it locally, you can access the version deployed in Heroku [clicking here!]()
+If you want to view the project without having to install it locally, you can access the version deployed in Heroku [clicking here!](https://distribuidas-backend.herokuapp.com/)
 
 ## Installation and local deployment
 
@@ -29,9 +29,9 @@ We provide you with the following connection string to access the records and co
 mongodb+srv://readOnly:readOnly@cluster0.iafee.mongodb.net/appInteractivasDataBase
 ``` -->
 
-<!-- ## API Docs
+## API Docs
 
-If you want to view the API documentation [click here!](https://interactivas-backend.herokuapp.com/api-docs/) -->
+If you want to view the API documentation [click here!](https://distribuidas-backend.herokuapp.com/api-docs/)
 
 ## Authors
 - Lautaro Mitelman
