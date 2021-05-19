@@ -29,6 +29,4 @@ require('./database/config');
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 // Paths
-// app.use('/api/auth', require('./routes/auth.routes'));
-// app.use('/api/users', require('./routes/users.routes'));
-// app.use('/api/forms', require('./routes/forms.routes'));
+app.use('/api/personas', require('./routes/persona.routes'));
