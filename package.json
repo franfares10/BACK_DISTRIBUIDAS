@@ -4,7 +4,7 @@
 	"description": "",
 	"main": "index.js",
 	"scripts": {
-		"start:dev": "nodemon --delay 500ms index.js",
+		"start:dev": "nodemon index.js",
 		"start": "node index.js"
 	},
 	"repository": {

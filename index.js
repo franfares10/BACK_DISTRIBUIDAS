@@ -30,3 +30,8 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 // Paths
 app.use('/api/personas', require('./routes/persona.routes'));
+
+// Listening port
+app.listen(process.env.PORT, () => {
+    console.log('Example app listening on port ' + process.env.PORT);
+});
