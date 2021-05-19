@@ -1,41 +1,53 @@
 const { response } = require("express");
 const bcrypt = require('bcryptjs');
-const Persona = require('../models/persona');
+const { Persona } = require('../database/config');
 
-const getPersona = async (req, res = response) => {
-    try {
-        const users = await User.find();
-        res.json({
-            ok: true,
-            method: 'getUsers',
-            users: users
-        });
-    } catch (error) {
-        console.log(error);
-        res.status(500).json({
-            ok: false,
-            method: 'getUsers',
-            msg: 'An unexpected error has occurred.'
-        });
-    }
+const getPersonaById = async (req, res = response) => {
+	const { id } = req.params;
+	try {
+		const persona = await Persona.findByPk(id);
+		res.json({
+			ok: true,
+			method: 'getPersona',
+			persona
+		});
+	} catch (error) {
+		console.log(error);
+		res.status(500).json({
+			ok: false,
+			method: 'getPersona',
+			msg: 'An unexpected error has occurred.'
+		});
+	}
 }
 
 const createPersona = async (req, res = response) => {
-    const { email, password } = req.body;
-    try {
-        console.log('Hey')
-    } catch (error) {
-        console.log(error);
-        res.status(500).json({
-            ok: false,
-            method: 'createUser',
-            msg: 'An unexpected error has occurred.'
-        });
-    }
+	const { documento, nombre, direccion, foto } = req.body;
+	try {
+		const nuevaPersona = await Persona.create({
+			documento,
+			nombre,
+			direccion,
+			estado: 'Aprobado',
+			foto
+		});
+		res.json({
+			ok: true,
+			method: 'createPersona',
+			nuevaPersona: nuevaPersona
+		});
+	} catch (error) {
+		console.log(error);
+		res.status(500).json({
+			ok: false,
+			method: 'createPersona',
+			msg: 'An unexpected error has occurred.'
+		});
+	}
 }
 
 
 module.exports = {
-    getPersona,
-    createPersona,
+	getPersonaById,
+	createPersona,
 }

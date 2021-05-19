@@ -4,21 +4,21 @@
 
 const { Router } = require('express');
 const { check } = require('express-validator');
-const { getPersona, createPersona } = require('../controllers/persona.controller');
+const { getPersonaById, createPersona } = require('../controllers/persona.controller');
 const { validarCampos } = require('../middlewares/validar-campos');
 const router = Router();
 
-router.get('/getUsers',
-    getPersona
+router.get('/getPersonaById/:id',
+    getPersonaById
 );
 
-router.post('/createUser',
+router.post('/createPersona',
     [
-        // check('name').not().isEmpty(),
-        // check('password').not().isEmpty(),
-        // check('role').not().isEmpty(),
-        // check('email').isEmail(),
-        // validarCampos
+        check('nombre').not().isEmpty(),
+        check('direccion').not().isEmpty(),
+        check('documento').not().isEmpty(),
+        check('foto').not().isEmpty(),
+        validarCampos
     ],
     createPersona
 );
