@@ -9,7 +9,7 @@ const sequelize = new Sequelize(`dywm8g83d72lqe2f`, 'j5gmdrbbpderlaut', 'rrz727k
 });
 
 const Persona = PersonaModel(sequelize, Sequelize);
-//const MedioDePago = medioDePagoModel(sequelize,Sequelize)
+const MedioDePago = medioDePagoModel(sequelize,Sequelize)
 
 sequelize.sync({ force: true })
 	.then(() => {
@@ -21,5 +21,6 @@ sequelize.sync({ force: true })
 
 module.exports = {
 	Persona,
-	sequelize
+	sequelize,
+	MedioDePago
 };

@@ -12,7 +12,7 @@ router.get("/paymentMethod/:idCliente",
     findMPbyId
     /*Servicio que consume*/)
 
-router.post('paymentMethod',[],postMP)
+router.post('/paymentMethod',[],postMP)
 
 router.get('/paymentMethod/:idCliente/:cardNumber?key=value',[],findByCustomQuery)
 
