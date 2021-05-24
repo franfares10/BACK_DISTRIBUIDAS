@@ -7,14 +7,14 @@ const router = Router();
 
 //Acá defino los servicios con el http method que sea.
 
-router.get("/paymentMethod/:idCliente",
+router.get("/paymentMethod/:idCliente/:cardNumber",
     [check('idCliente').notEmpty(),validarCampos],
     findMPbyId
     /*Servicio que consume*/)
 
 router.post('/paymentMethod',[],postMP)
 
-router.get('/paymentMethod/:idCliente/:cardNumber?key=value',[],findByCustomQuery)
+router.get('/paymentMethod/:idCliente',[],findByCustomQuery)
 
 //DELETE /paymentMethod/{idCliente}/{cardNumber}
 //PUT /paymentMethod/{idCliente}/{cardNumber}

@@ -4,9 +4,13 @@ const { errorMonitor } = require('stream');
 const {MedioDePago} = require('../database/config')
 
 const findMPbyId=async (req ,res = response)=>{
-    let id = req.params.id;
+    let {idCliente,cardNumber} = req.params;
+    //console.log(idCliente + "-"+cardNumber)
     try{
-        const pmResult = await MedioDePago.findByPk(id);
+        const pmResult = await MedioDePago.findAll({where:{
+            idCliente:idCliente,
+            cardNumber: cardNumber
+        }});
         res.status(200).json({
             pmEncontrado: pmResult,
             method:"findPMbyId"
@@ -34,12 +38,11 @@ const checkParamsBeforeInsert= async (cardNumber,idCliente)=>{
 }
 
 const findByCustomQuery = async (req,res = response)=>{
-    const {cardNumber,idCliente,isValidated} = req.params.isValidated
+    const {idCliente} = req.params
     try{
         //Agregar logica  del where por la validacion distintos de verdadero
         const resultado= await MedioDePago.findAll({where:
-            {isValidated:isValidated,
-            cardNumber: cardNumber,
+            {isValidated:false,
             idCliente:idCliente
             }
         })
@@ -90,18 +93,19 @@ const postMP= async (req, res = response)=>{
 }
 
 const deletePM  = async (req, res = response)=>{
-    let idBuscar = req.params.id
+    let {idCliente,cardNumber} = req.params
     try{
-        let pmEncontrado=findMPbyId(idBuscar);
+        let pmEncontrado=findMPbyId(req);
         if(pmEncontrado===undefined){
             res.status(401).json({
                 error: 'No se encontraron medios de pago',
                 method: 'deletePaymentMethod'
             })
         }
-        let borrarCard = await MedioDePago.destroy({
+        await MedioDePago.destroy({
             where:{
-                cardNumber: pmEncontrado.cardNumber
+                cardNumber: cardNumber,
+                idCliente: idCliente
             }
         })
         res.status(200).json({
@@ -118,29 +122,44 @@ const deletePM  = async (req, res = response)=>{
 
 
 const updatePm = async (req, res = response)=>{
-    let cardId = req.params.id
+    let {idCliente,cardNumber} = req.params
+    let opcion = req.headers.opcion
+    let updatedVariable;
+    console.log("Los parametros son: "+idCliente,cardNumber,opcion)
     try{
-        if(cardId!==undefined){
-            let cardEncontrada = await MedioDePago.findByPk(cardId);
-            let updatedVariable = await MedioDePago.update(
-                {isValidated:true},{where:
-                    {
-                        idCliente:cardEncontrada.idCliente,
-                        cardNumber: cardEncontrada.cardNumber
-                    }
-                }
-            )
-            res.status(200).json({
-                message:"Medio de pago actualizado",
-                method: "updatedPaymentMethod",
-                objeto: updatedVariable
+        if(idCliente!==undefined){
+            let cardEncontrada = await MedioDePago.findAll({where:{
+                cardNumber:cardNumber,
+                idCliente:idCliente
+            }});
+            switch (opcion){
+                case 1:
+                    //Actualiza de falso a true
+                    updatedVariable = await MedioDePago.update(
+                        {isValidated:true},{where:
+                            {
+                                idCliente:cardEncontrada.idCliente,
+                                cardNumber: cardEncontrada.cardNumber
+                            }
+                        }
+                    )
+                case 2:
+                    updatedVariable = await MedioDePago.update(
+                        {isValidated:false},{where:
+                            {
+                                idCliente:cardEncontrada.idCliente,
+                                cardNumber: cardEncontrada.cardNumber
+                            }
+                        }
+                    )
+            }
+                res.status(200).json({
+                    message:"Medio de pago actualizado",
+                    method: "updatedPaymentMethod",
+                    objeto: updatedVariable
 
-            })
-        }
-        res.status(400).json({
-            message:"No se pudo actualizar el medio de pago",
-            method: "updatedPaymentMethod"
-        })
+                })            
+            }
     }catch(error){
         res.status(500).json({
             message:error,
