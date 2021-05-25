@@ -14,13 +14,10 @@ module.exports = (sequelize,type) => {
             type:type.STRING,
             allowNull:true
         },
+
         id_subasta:{
             type: type.INTEGER,
-            allowNull:false,
-            references:{
-                model:Subasta,
-                key:'idSubasta'
-            }
+            allowNull:false, 
         },
         idesponsable:{
             type: type.INTEGER,
