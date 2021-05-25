@@ -18,7 +18,11 @@ module.exports = (sequelize,type) => {
         },
         producto:{
             type:type.INTEGER,
-            allowNull:false
+            allowNull:false,
+            references:{
+                model:'productos',
+                key:'idProducto'
+            }
         },
         precioBase:{
             type:type.DOUBLE,

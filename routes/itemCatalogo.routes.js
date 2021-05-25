@@ -1,4 +1,11 @@
 const { Router } = require('express');
-const { getCatalogoById, createCatalogo } = require('../controllers/catalogo.controller');
+const { getItemsCatalogoByCatalogoId,createItemCatalogo} = require('../controllers/itemCatalogo.controller');
 const { check } = require('express-validator');
 
+const router = Router();
+
+router.get('/getItemsByCatalogo/:id',getItemsCatalogoByCatalogoId);
+
+router.post('/createItemCatalogo',createItemCatalogo);
+
+module.exports = router;
