@@ -1,7 +1,7 @@
 const { Catalogo,Persona } = require("../database/config")
 
 module.exports = (sequelize,type) =>{
-    return sequelize.define('subasta',{
+    const Subasta = sequelize.define('subastas',{
 
         idSubasta:{
             type: type.INTEGER,
@@ -18,7 +18,7 @@ module.exports = (sequelize,type) =>{
             type: type.INTEGER,
             allowNull:false,
             references:{
-                model: Persona,
+                model: 'personas',
                 key:'identificador'
             }
         },
@@ -34,7 +34,7 @@ module.exports = (sequelize,type) =>{
             type:type.INTEGER,
             allowNull:false,
             references:{
-                model: Catalogo,
+                model: 'catalogos',
                 key:'idCatalogo'
             }
         }

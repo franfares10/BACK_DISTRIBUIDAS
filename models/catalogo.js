@@ -1,7 +1,7 @@
 const {Persona,Subasta} = require('../database/config');
 
 module.exports = (sequelize,type) => {
-    return sequelize.define('catalogo',{
+    return sequelize.define('catalogos',{
        
         idCatalogo:{
             type: type.INTEGER,
@@ -14,19 +14,11 @@ module.exports = (sequelize,type) => {
             type:type.STRING,
             allowNull:true
         },
-        id_subasta:{
+        idResponsable:{
             type: type.INTEGER,
-            allowNull:false,
+            allowNull:true,
             references:{
-                model:Subasta,
-                key:'idSubasta'
-            }
-        },
-        idesponsable:{
-            type: type.INTEGER,
-            allowNull:false,
-            references:{
-                model: Persona,
+                model: 'personas',
                 key:'identificador'
             }
         }
