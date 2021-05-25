@@ -1,6 +1,6 @@
 const {Router} = require('express')
 const {check} = require('express-validator')
-const {findMPbyId,updatePm,deletePM,postMP,findByCustomQuery} = require('../controllers/medioDePagoController')
+const {findMPbyId,updatePm,deletePM,postMP,findByCustomQuery} = require('../controllers/medioDePago.controller')
 const {validarCampos} = require('../middlewares/validar-campos')
 const router = Router();
 

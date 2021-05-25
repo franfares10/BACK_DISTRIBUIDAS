@@ -16,7 +16,7 @@ module.exports = (sequelize,type) => {
         },
         idResponsable:{
             type: type.INTEGER,
-            allowNull:true,
+            allowNull:false,
             references:{
                 model: 'personas',
                 key:'identificador'
