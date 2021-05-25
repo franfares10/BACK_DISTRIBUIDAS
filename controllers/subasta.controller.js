@@ -21,13 +21,14 @@ const getSubastas = async(req, res = reponse) =>{
 
 
 const createSubasta = async (req, res = response) => {
-	const { fecha, id_subastador, categoria,estado } = req.body;
+	const { fecha, id_subastador,id_catalogo, categoria,estado } = req.body;
 	try {
 		console.log(fecha)
 		console.log(id_subastador)
 		const nuevaSubasta = await Subasta.create({
 			fecha,
 			id_subastador,
+			id_catalogo,
 			categoria,
 			estado
 		});

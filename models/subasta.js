@@ -20,6 +20,14 @@ module.exports = (sequelize,type) =>{
                 key:'identificador'
             }
         },
+        id_catalogo:{
+            type:type.INTEGER,
+            allowNull:false,
+            references:{
+                model:'catalogos',
+                key:'idCatalogo'
+            }
+        },
         categoria:{
             type:type.STRING,
             allowNull:false
