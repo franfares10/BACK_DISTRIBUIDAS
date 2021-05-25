@@ -1,5 +1,3 @@
-const { Catalogo,Persona } = require("../database/config")
-
 module.exports = (sequelize,type) =>{
     return sequelize.define('subastas',{
 
@@ -29,14 +27,6 @@ module.exports = (sequelize,type) =>{
         estado:{
             type:type.STRING,
             allowNull:false
-        },
-        id_catalogo:{
-            type:type.INTEGER,
-            allowNull:false,
-            references:{
-                model: 'catalogos',
-                key:'idCatalogo'
-            }
         }
     })
 }

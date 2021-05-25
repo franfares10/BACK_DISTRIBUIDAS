@@ -7,13 +7,6 @@ const router = Router();
 
 router.get('/getSubastas', getSubastas);
 
-router.post('/createSubasta',[
-    check('fecha').not().isEmpty(),
-    check('subastador').not().isEmpty(),
-    check('categoria').not().isEmpty(),
-    check('estado').not().isEmpty(),
-    check('idCatalogo').not().isEmpty()
-],
-createSubasta);
+router.post('/createSubasta',createSubasta);
 
 module.exports = router;

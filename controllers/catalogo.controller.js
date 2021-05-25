@@ -23,12 +23,12 @@ const getCatalogoById = async (req,res = response) => {
 }
 
 const createCatalogo = async (req, res = response) => {
-	const { descripcion, id_subasta, id_responsable } = req.body;
+	const { descripcion, idSubasta, idResponsable } = req.body;
 	try {
 		const nuevoCatalogo = await Catalogo.create({
 			descripcion,
-			id_subasta,
-			id_responsable
+			idSubasta,
+			idResponsable
 		});
 		res.json({
 			ok: true,
