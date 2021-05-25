@@ -27,7 +27,8 @@ module.exports = (sequelize,type)=>{
 		},
 		idCliente: {
 			type: DataTypes.INTEGER,
-			allowNull: false
+			allowNull: false,
+			primaryKey:true
 		}
 	}
 	)
