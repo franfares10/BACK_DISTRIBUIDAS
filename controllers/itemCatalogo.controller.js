@@ -1,5 +1,5 @@
 const { response } = require("express");
-const {ItemCatalogo} = require('../database/config');
+const {ItemCatalogo,Producto} = require('../database/config');
 
 const getItemsCatalogoByCatalogoId = async(req, res = response) => {
 

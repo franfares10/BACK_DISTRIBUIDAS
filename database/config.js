@@ -6,6 +6,7 @@ const catalogoModel = require('../models/catalogo');
 const subastaModel = require('../models/subasta');
 const itemCatalogoModel = require('../models/itemCatalogo');
 const productoModel = require('../models/producto');
+const registroDeSubastaModel = require('../models/registroDeSubasta');
 
 const sequelize = new Sequelize(`dywm8g83d72lqe2f`, 'j5gmdrbbpderlaut', 'rrz727k9h972m59m', {
 	host: 'bmlx3df4ma7r1yh4.cbetxkdyhwsb.us-east-1.rds.amazonaws.com',
@@ -18,6 +19,7 @@ const Catalogo = catalogoModel(sequelize,Sequelize);
 const Subasta = subastaModel(sequelize,Sequelize);
 const ItemCatalogo = itemCatalogoModel(sequelize,Sequelize);
 const Producto = productoModel(sequelize,Sequelize);
+const RegistroDeSubasta = registroDeSubastaModel(sequelize,Sequelize);
 
 sequelize.sync({ force: false })
 	.then(() => {
@@ -34,5 +36,6 @@ module.exports = {
 	Subasta,
 	ItemCatalogo,
 	Producto,
+	RegistroDeSubasta,
 	sequelize
 };
