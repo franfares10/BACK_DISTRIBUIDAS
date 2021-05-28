@@ -18,14 +18,14 @@ const sequelize = new Sequelize(`dywm8g83d72lqe2f`, 'j5gmdrbbpderlaut', 'rrz727k
 
 const Persona = PersonaModel(sequelize, Sequelize);
 const Cliente = ClienteModel(sequelize, Sequelize);
-const MedioDePago = medioDePagoModel(sequelize,Sequelize)
-const Catalogo = catalogoModel(sequelize,Sequelize);
-const Subasta = subastaModel(sequelize,Sequelize);
-const ItemCatalogo = itemCatalogoModel(sequelize,Sequelize);
-const Producto = productoModel(sequelize,Sequelize);
-const RegistroDeSubasta = registroDeSubastaModel(sequelize,Sequelize);
-const Subastadores = subastadoresModel(sequelize,Sequelize);
-const Foto = fotoModel(sequelize,Sequelize);
+const MedioDePago = medioDePagoModel(sequelize, Sequelize)
+const Catalogo = catalogoModel(sequelize, Sequelize);
+const Subasta = subastaModel(sequelize, Sequelize);
+const ItemCatalogo = itemCatalogoModel(sequelize, Sequelize);
+const Producto = productoModel(sequelize, Sequelize);
+const RegistroDeSubasta = registroDeSubastaModel(sequelize, Sequelize);
+const Subastadores = subastadoresModel(sequelize, Sequelize);
+const Foto = fotoModel(sequelize, Sequelize);
 
 sequelize.sync({ force: false })
 	.then(() => {
@@ -45,7 +45,7 @@ module.exports = {
 	RegistroDeSubasta,
 	Subastadores,
 	Foto,
-  Persona,
-	Cliente
+	Persona,
+	Cliente,
 	sequelize
 };
