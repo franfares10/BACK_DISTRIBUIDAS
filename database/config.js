@@ -1,6 +1,7 @@
 const Sequelize = require('sequelize');
 
 const PersonaModel = require('../models/persona');
+const ClienteModel = require('../models/cliente');
 
 const sequelize = new Sequelize(`dywm8g83d72lqe2f`, 'j5gmdrbbpderlaut', 'rrz727k9h972m59m', {
 	host: 'bmlx3df4ma7r1yh4.cbetxkdyhwsb.us-east-1.rds.amazonaws.com',
@@ -8,8 +9,9 @@ const sequelize = new Sequelize(`dywm8g83d72lqe2f`, 'j5gmdrbbpderlaut', 'rrz727k
 });
 
 const Persona = PersonaModel(sequelize, Sequelize);
+const Cliente = ClienteModel(sequelize, Sequelize);
 
-sequelize.sync({ force: true })
+sequelize.sync({ force: false })
 	.then(() => {
 		console.log("All models were synchronized successfully.");
 	})
@@ -18,5 +20,6 @@ sequelize.sync({ force: true })
 	});
 
 module.exports = {
-	Persona
+	Persona,
+	Cliente
 };
