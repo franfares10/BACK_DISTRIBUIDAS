@@ -33,6 +33,7 @@ app.use('/api/personas', require('./routes/persona.routes'));
 app.use('/api/mediosdepago',require('./routes/medioDePago.routes'))
 app.use('/api/catalogos',require('./routes/catalogo.routes'))
 app.use('/api/subastas',require('./routes/subasta.routes'));
+app.use('api/dueños',require('./routes/dueños.routes'))
 
 // Listening port
 app.listen(process.env.PORT, () => {
