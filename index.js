@@ -37,12 +37,9 @@ app.use('/api/subastas',require('./routes/subasta.routes'));
 app.use('/api/itemsCatalogo',require('./routes/itemCatalogo.routes'));
 app.use('/api/productos',require('./routes/producto.routes'));
 app.use('/api/registrosDeSubasta',require('./routes/registroDeSubasta.routes'));
-<<<<<<< HEAD
 app.use('/api/subastadores', require('./routes/subastadores.routes'));
 
-=======
 app.use('/api/fotos',require('./routes/foto.routes'));
->>>>>>> b7568ae45e99fabbf75b88b9094df78cdc6fe89a
 // Listening port
 app.listen(process.env.PORT, () => {
     console.log('Example app listening on port ' + process.env.PORT);
