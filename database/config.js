@@ -1,6 +1,7 @@
 const Sequelize = require('sequelize');
 
 const PersonaModel = require('../models/persona');
+const ClienteModel = require('../models/cliente');
 const medioDePagoModel = require('../models/medioDePago')
 const catalogoModel = require('../models/catalogo');
 const subastaModel = require('../models/subasta');
@@ -16,6 +17,7 @@ const sequelize = new Sequelize(`dywm8g83d72lqe2f`, 'j5gmdrbbpderlaut', 'rrz727k
 });
 
 const Persona = PersonaModel(sequelize, Sequelize);
+const Cliente = ClienteModel(sequelize, Sequelize);
 const MedioDePago = medioDePagoModel(sequelize,Sequelize)
 const Catalogo = catalogoModel(sequelize,Sequelize);
 const Subasta = subastaModel(sequelize,Sequelize);
@@ -43,5 +45,7 @@ module.exports = {
 	RegistroDeSubasta,
 	Subastadores,
 	Foto,
+  Persona,
+	Cliente
 	sequelize
 };

@@ -31,6 +31,7 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 // Paths
 app.use('/api/personas', require('./routes/persona.routes'));
+app.use('/api/clientes', require('./routes/cliente.routes'));
 app.use('/api/mediosdepago',require('./routes/medioDePago.routes'))
 app.use('/api/catalogos',require('./routes/catalogo.routes'))
 app.use('/api/subastas',require('./routes/subasta.routes'));
