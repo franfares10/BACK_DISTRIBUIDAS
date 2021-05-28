@@ -21,13 +21,14 @@ const getSubastas = async(req, res = reponse) =>{
 
 
 const createSubasta = async (req, res = response) => {
-	const { fecha, id_subastador, categoria,estado } = req.body;
+	const { fecha, id_subastador,id_catalogo, categoria,estado } = req.body;
 	try {
 		console.log(fecha)
 		console.log(id_subastador)
 		const nuevaSubasta = await Subasta.create({
 			fecha,
 			id_subastador,
+			id_catalogo,
 			categoria,
 			estado
 		});
@@ -46,8 +47,39 @@ const createSubasta = async (req, res = response) => {
 	}
 }
 
+const updateEstadoSubasta = async (req, res = response)=>{
+
+	const {id} = req.params;
+    
+    try{
+        
+		const subastaActualizada = await Subasta.update(
+			{
+				estado:"Inactiva"
+			},
+			{
+				where:{
+					idSubasta:id
+				}
+			}
+		)
+        res.status(200).json({
+            message:"Estado de Subasta actualizado",
+            method: "updateEstadoSubasta",
+            objeto: subastaActualizada
+
+        })            
+
+    }catch(error){
+        res.status(500).json({
+            message:error,
+            method: "updateEstadoSubasta"
+        })
+    }
+}
 
 module.exports = {
     getSubastas,
-    createSubasta
+    createSubasta,
+	updateEstadoSubasta
 }

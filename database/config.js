@@ -7,6 +7,11 @@ const subastaModel = require('../models/subasta');
 const dueñoModel = require('../models/dueños');
 const empleadosModel = require('../models/empleados');
 const asistentesModel = require('../models/asistentes')
+const itemCatalogoModel = require('../models/itemCatalogo');
+const productoModel = require('../models/producto');
+const registroDeSubastaModel = require('../models/registroDeSubasta');
+const subastadoresModel = require('../models/subastadores');
+const fotoModel = require('../models/foto');
 
 const sequelize = new Sequelize(`dywm8g83d72lqe2f`, 'j5gmdrbbpderlaut', 'rrz727k9h972m59m', {
 	host: 'bmlx3df4ma7r1yh4.cbetxkdyhwsb.us-east-1.rds.amazonaws.com',
@@ -20,6 +25,11 @@ const Subasta = subastaModel(sequelize,Sequelize);
 const Dueños = dueñoModel(sequelize,Sequelize)
 const Empleados = empleadosModel(sequelize,Sequelize)
 const Asistentes = asistentesModel(sequelize,Sequelize)
+const ItemCatalogo = itemCatalogoModel(sequelize,Sequelize);
+const Producto = productoModel(sequelize,Sequelize);
+const RegistroDeSubasta = registroDeSubastaModel(sequelize,Sequelize);
+const Subastadores = subastadoresModel(sequelize,Sequelize);
+const Foto = fotoModel(sequelize,Sequelize);
 
 sequelize.sync({ force: false })
 	.then(() => {
@@ -34,5 +44,10 @@ module.exports = {
 	MedioDePago,
 	Catalogo,
 	Subasta,
+	ItemCatalogo,
+	Producto,
+	RegistroDeSubasta,
+	Subastadores,
+	Foto,
 	sequelize
 };

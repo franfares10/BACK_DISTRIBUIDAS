@@ -1,39 +1,37 @@
-module.exports = (sequelize,type) =>{
-    return sequelize.define('subastas',{
+module.exports = (sequelize,type) => {
+    return sequelize.define('itemsCatalogo',{
 
-        idSubasta:{
+        idItemCatalogo:{
             type: type.INTEGER,
             primaryKey: true,
             autoIncrement: true,
             allowNull: false,
             unique: true
         },
-        fecha:{
-            type: type.DATE,
-            allowNull:false
-        },
-        id_subastador:{
+        catalogo:{
             type: type.INTEGER,
-            allowNull:false,
-            references:{
-                model: 'personas',
-                key:'identificador'
-            }
-        },
-        id_catalogo:{
-            type:type.INTEGER,
             allowNull:false,
             references:{
                 model:'catalogos',
                 key:'idCatalogo'
             }
         },
-        categoria:{
-            type:type.STRING,
+        producto:{
+            type:type.INTEGER,
+            allowNull:false,
+            references:{
+                model:'productos',
+                key:'idProducto'
+            }
+        },
+        precioBase:{
+            type:type.DOUBLE,
             allowNull:false
         },
-        estado:{
-            type:type.STRING,
+        comision:type.FLOAT,
+        subastado:{
+            type:type.BOOLEAN,
+            defaultValue:false,
             allowNull:false
         }
     })

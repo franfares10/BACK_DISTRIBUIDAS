@@ -1,7 +1,6 @@
 module.exports = (sequelize,type) =>{
-    return sequelize.define('subastas',{
-
-        idSubasta:{
+    return sequelize.define('productos',{
+        idProducto:{
             type: type.INTEGER,
             primaryKey: true,
             autoIncrement: true,
@@ -9,32 +8,31 @@ module.exports = (sequelize,type) =>{
             unique: true
         },
         fecha:{
-            type: type.DATE,
+            type:type.DATE
+        },
+        disponible:{
+            type: type.BOOLEAN,
             allowNull:false
         },
-        id_subastador:{
+        descripcion:{
+            type: type.STRING,
+            allowNull:false
+        },
+        id_revisor:{
             type: type.INTEGER,
             allowNull:false,
             references:{
-                model: 'personas',
+                model:'personas',
                 key:'identificador'
             }
         },
-        id_catalogo:{
-            type:type.INTEGER,
+        id_duenio:{
+            type: type.INTEGER,
             allowNull:false,
             references:{
-                model:'catalogos',
-                key:'idCatalogo'
+                model:'personas',
+                key:'identificador'
             }
-        },
-        categoria:{
-            type:type.STRING,
-            allowNull:false
-        },
-        estado:{
-            type:type.STRING,
-            allowNull:false
         }
     })
 }
