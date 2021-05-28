@@ -47,8 +47,39 @@ const createSubasta = async (req, res = response) => {
 	}
 }
 
+const updateEstadoSubasta = async (req, res = response)=>{
+
+	const {id} = req.params;
+    
+    try{
+        
+		const subastaActualizada = await Subasta.update(
+			{
+				estado:"Inactiva"
+			},
+			{
+				where:{
+					idSubasta:id
+				}
+			}
+		)
+        res.status(200).json({
+            message:"Estado de Subasta actualizado",
+            method: "updateEstadoSubasta",
+            objeto: subastaActualizada
+
+        })            
+
+    }catch(error){
+        res.status(500).json({
+            message:error,
+            method: "updateEstadoSubasta"
+        })
+    }
+}
 
 module.exports = {
     getSubastas,
-    createSubasta
+    createSubasta,
+	updateEstadoSubasta
 }
