@@ -5,12 +5,13 @@ const cors = require('cors');
 const swaggerUi = require('swagger-ui-express');
 swaggerDocument = require('./swagger.json');
 
+
 // Express
 const app = express();
 
 // CORS & Environment
 app.use(cors());
-
+app.use(express.static('public'));
 // Request's Body parsing
 app.use(express.json());
 
@@ -36,7 +37,7 @@ app.use('/api/subastas',require('./routes/subasta.routes'));
 app.use('/api/itemsCatalogo',require('./routes/itemCatalogo.routes'));
 app.use('/api/productos',require('./routes/producto.routes'))
 app.use('/api/registrosDeSubasta',require('./routes/registroDeSubasta.routes'));
-
+app.use('/api/fotos',require('./routes/foto.routes'));
 // Listening port
 app.listen(process.env.PORT, () => {
     console.log('Example app listening on port ' + process.env.PORT);
