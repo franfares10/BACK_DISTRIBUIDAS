@@ -30,6 +30,27 @@ const createFoto = async (req, res = response) =>{
     }
 }
 
+
+const generarFotoPorId=async (fotos)=>{
+    try{
+       
+        var list = await fotos.map( foto =>{  
+        const objeto=JSON.parse(JSON.stringify(foto))
+        console.log(objeto.foto)
+        //fs.writeFile("imagenGenerada.jpg",objeto.foto.data,'base64',function(error){console.log('error'+error)})
+        var blob = new Buffer(objeto.foto.data,'binary').toString("base64");
+        //console.log(blob)
+        console.log(blob.length)
+        return blob;
+    })
+    //console.log(list)
+    return list;
+    }catch(error){
+        console.log(error)
+    }
+
+}
+
 const getFotosByProducto = async(req, res = response) =>{
     const {id} = req.params;
 
@@ -39,10 +60,13 @@ const getFotosByProducto = async(req, res = response) =>{
                 idProducto:id
             }
         })
+
+        var resultado = await generarFotoPorId(fotos);
+        //console.log(resultado)
         res.json({
             ok: true,
 			method: 'getFotosByProducto',
-			fotos:fotos
+			fotos:resultado
         });
 
     }catch(error){
