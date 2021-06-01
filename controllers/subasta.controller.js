@@ -3,7 +3,11 @@ const {Subasta} = require('../database/config');
 
 const getSubastas = async(req, res = reponse) =>{
     try{
-        const subastas = await Subasta.findAll();
+        const subastas = await Subasta.findAll({
+			where:{
+				estado:'Activa'
+			}
+		});
         res.json({
 			ok: true,
 			method: 'getSubastas',

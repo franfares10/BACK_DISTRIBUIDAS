@@ -36,6 +36,7 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 // Paths
 app.use('/api/personas', require('./routes/persona.routes'));
+app.use('/api/clientes', require('./routes/cliente.routes'));
 app.use('/api/mediosdepago',require('./routes/medioDePago.routes'))
 app.use('/api/catalogos',require('./routes/catalogo.routes'))
 app.use('/api/subastas',require('./routes/subasta.routes'));
@@ -47,6 +48,7 @@ app.use('/api/subastadores', require('./routes/subastadores.routes'));
 app.use('/api/empleados',require('./routes/empleados.routes'))
 app.use('/api/fotos',require('./routes/foto.routes'));
 app.use('/api/asistentes',require('./routes/asistentes.routes'))
+
 app.listen(process.env.PORT, () => {
     console.log('Example app listening on port ' + process.env.PORT);
 });

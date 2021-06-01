@@ -3,9 +3,6 @@ module.exports = (sequelize,type) => {
         identificador:{
             type: type.INTEGER,
             primaryKey: true,
-            autoIncrement: true,
-            allowNull: false,
-            unique: true,
             references:{
                 model:'personas',
                 key:'identificador'
