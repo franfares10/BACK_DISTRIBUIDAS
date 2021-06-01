@@ -13,6 +13,7 @@ const fotoModel = require('../models/foto');
 const dueñosModel = require('../models/dueños')
 const asistentesModel = require('../models/asistentes')
 const empleadosModel = require('../models/empleados')
+const lightFotoModel = require('../models/lightFoto');
 
 const sequelize = new Sequelize(`dywm8g83d72lqe2f`, 'j5gmdrbbpderlaut', 'rrz727k9h972m59m', {
 	host: 'bmlx3df4ma7r1yh4.cbetxkdyhwsb.us-east-1.rds.amazonaws.com',
@@ -32,6 +33,7 @@ const Foto = fotoModel(sequelize, Sequelize);
 const Dueños = dueñosModel(sequelize,Sequelize);
 const Asistentes = asistentesModel(sequelize,Sequelize)
 const Empleados = empleadosModel(sequelize,Sequelize)
+const LightFoto = lightFotoModel(sequelize,Sequelize);
 
 sequelize.sync({ force: false })
 	.then(() => {
@@ -51,8 +53,9 @@ module.exports = {
 	RegistroDeSubasta,
 	Subastadores,
 	Foto,
-	sequelize,
 	Asistentes,
 	Dueños,
-	Empleados
+	Empleados,
+	LightFoto,
+	sequelize
 };

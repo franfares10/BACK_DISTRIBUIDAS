@@ -1,5 +1,5 @@
 const { response, request } = require("express");
-const { Foto } = require("../database/config");
+const { Foto,LightFoto } = require("../database/config");
 const fs = require("fs");
 const { subirDocumentosDigitales } = require("./cloudinary.controllers");
 const path = require('path');
@@ -16,14 +16,16 @@ const createFoto = async (req, res = response) => {
       idProducto,
       foto: fs.readFileSync(fileName),
     });
-
+    const nuevaLightFoto = await LightFoto.create({
+      idProducto
+    })
     const resultado = await subirDocumentosDigitales(fileName);
     //console.log("Public id" + resultado);
     //console.log("Nueva foto id:" + nuevaFoto.idFoto);
     //console.log("Nueva product id:" + nuevaFoto.idProducto);
 
     var imprimir = await updateFoto(resultado,nuevaFoto.idFoto,nuevaFoto.idProducto)
-
+    var light = await updateFoto(resultado,nuevaLightFoto.idFoto,nuevaLightFoto.idProducto);
     
     res.json({
       ok: true,
@@ -43,7 +45,7 @@ const createFoto = async (req, res = response) => {
 
 const updateFoto = async (resultado, idFoto, idProducto) => {
   if(resultado!==undefined && idFoto!==undefined && idProducto!==undefined){
-    await Foto.update(
+    await LightFoto.update(
       { referencia_url: resultado },
       {
         where: {
