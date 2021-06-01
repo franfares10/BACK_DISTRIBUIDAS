@@ -1,5 +1,5 @@
 const { Router } = require('express');
-const {createFoto,getFotosByProducto} = require('../controllers/foto.controller');
+const {createFoto,getFotosByProducto,generarFotoPorId} = require('../controllers/foto.controller');
 const { check } = require('express-validator');
 const upload = require('../storage/storage');
 

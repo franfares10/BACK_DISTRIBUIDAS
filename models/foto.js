@@ -1,3 +1,5 @@
+const { DataTypes, Sequelize } = require("sequelize")
+
 module.exports = (sequelize, type) =>{
     return sequelize.define('fotos', {
         idFoto:{
@@ -16,7 +18,10 @@ module.exports = (sequelize, type) =>{
             }
         },
         foto:{
-            type: type.BLOB
+            type: Sequelize.BLOB('long')
+        },
+        referencia_url:{
+            type: DataTypes.STRING
         }
     })
 }
