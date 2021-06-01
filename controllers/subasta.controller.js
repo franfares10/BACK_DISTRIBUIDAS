@@ -1,6 +1,28 @@
+
 const {response} = require("express");
 const {Subasta} = require('../database/config');
+const fetch = require('node-fetch');
 
+const {getItemsCatalogoByCatalogoId} = require('../controllers/itemCatalogo.controller')
+
+const fillSubastas = ( async data =>{
+	var list =[]
+	data.map( async subasta =>{
+		const res = await fetch(`https://distribuidas-backend.herokuapp.com/api/itemsCatalogo/getItemsByCatalogo/${subasta.id_catalogo}`, {
+			method: 'GET',
+		  });
+
+		const productos = await res.json();
+		  
+		var dic = {
+			subasta: subasta,
+			productos: productos
+		}
+		list.push(dic);
+	})
+
+	return list;
+}) 
 const getSubastas = async(req, res = reponse) =>{
     try{
         const subastas = await Subasta.findAll({
@@ -8,11 +30,23 @@ const getSubastas = async(req, res = reponse) =>{
 				estado:'Activa'
 			}
 		});
+
         res.json({
-			ok: true,
-			method: 'getSubastas',
-			subastas
-		});
+					ok: true,
+					method: 'getSubastas',
+					subastas
+				})
+
+		var lista = []
+
+		lista.push(subastas[0].dataValues)
+		console.log(lista)
+		const result =await fillSubastas(lista); 
+
+		console.log(result)
+		
+		
+
     }catch(error){
         console.error(error);
         res.status(500).json({
