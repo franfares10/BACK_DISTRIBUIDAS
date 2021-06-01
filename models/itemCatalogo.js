@@ -8,7 +8,7 @@ module.exports = (sequelize,type) => {
             allowNull: false,
             unique: true
         },
-        catalogo:{
+        catalogoIdCatalogo:{
             type: type.INTEGER,
             allowNull:false,
             references:{
@@ -16,7 +16,7 @@ module.exports = (sequelize,type) => {
                 key:'idCatalogo'
             }
         },
-        producto:{
+        productoIdProducto:{
             type:type.INTEGER,
             allowNull:false,
             references:{

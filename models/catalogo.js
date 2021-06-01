@@ -8,6 +8,10 @@ module.exports = (sequelize,type) => {
             allowNull: false,
             unique: true
         },
+        idSubasta:{
+            type: type.INTEGER,
+            allowNull:false
+        },
         descripcion:{
             type:type.STRING,
             allowNull:true

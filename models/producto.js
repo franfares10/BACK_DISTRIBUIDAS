@@ -29,10 +29,7 @@ module.exports = (sequelize,type) =>{
         id_duenio:{
             type: type.INTEGER,
             allowNull:false,
-            references:{
-                model:'personas',
-                key:'identificador'
-            }
+            
         }
     })
 }

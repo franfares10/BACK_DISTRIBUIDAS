@@ -1,18 +1,26 @@
+
 const {response} = require("express");
 const {Subasta} = require('../database/config');
+const fetch = require('node-fetch');
+const {Catalogo,Persona} = require("../database/config")
+const {getItemsCatalogoByCatalogoId} = require('../controllers/itemCatalogo.controller')
+
 
 const getSubastas = async(req, res = reponse) =>{
     try{
         const subastas = await Subasta.findAll({
+			include: [{ all: true, nested: true }],
 			where:{
 				estado:'Activa'
 			}
 		});
+
         res.json({
-			ok: true,
-			method: 'getSubastas',
-			subastas
-		});
+					ok: true,
+					method: 'getSubastas',
+					subastas
+				})
+
     }catch(error){
         console.error(error);
         res.status(500).json({
@@ -25,14 +33,13 @@ const getSubastas = async(req, res = reponse) =>{
 
 
 const createSubasta = async (req, res = response) => {
-	const { fecha, id_subastador,id_catalogo, categoria,estado } = req.body;
+	const { fecha, id_subastador, categoria,estado } = req.body;
 	try {
 		console.log(fecha)
 		console.log(id_subastador)
 		const nuevaSubasta = await Subasta.create({
 			fecha,
 			id_subastador,
-			id_catalogo,
 			categoria,
 			estado
 		});

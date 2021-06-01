@@ -15,18 +15,7 @@ module.exports = (sequelize,type) =>{
         id_subastador:{
             type: type.INTEGER,
             allowNull:false,
-            references:{
-                model: 'personas',
-                key:'identificador'
-            }
-        },
-        id_catalogo:{
-            type:type.INTEGER,
-            allowNull:false,
-            references:{
-                model:'catalogos',
-                key:'idCatalogo'
-            }
+            
         },
         categoria:{
             type:type.STRING,

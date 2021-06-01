@@ -5,7 +5,7 @@ const { check } = require('express-validator');
 
 const router = Router();
 
-router.get('/:id', getCatalogoById);
+router.get('/getCatalogos', getCatalogoById);
 
 router.post('/createCatalogo',
     [
