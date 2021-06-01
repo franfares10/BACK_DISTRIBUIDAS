@@ -14,7 +14,9 @@ router.post('/duenios',[
                        check('calificacionRiesgo').notEmpty(),
                        check('verificador').notEmpty()
  ,validarCampos],createDueño)
-router.put('/:idDuenio',[check('idDuenio').notEmpty(),validarCampos],updateDueño)
+router.put('/:idDuenio',[check('calificacionRiesgo').notEmpty(),
+check('verificacionJudicial').notEmpty(),check('verificacionFinanciera').notEmpty()
+,validarCampos],updateDueño)
 //router.get("/acaFunciona",console.log("ACA ENTRO"))
 
 module.exports = router

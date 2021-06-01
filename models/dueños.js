@@ -40,7 +40,7 @@ module.exports = (sequelize,type)=>{
             allowNull:false,
             defaultValue:0,
             references:{
-                model: 'empleados',
+                model: 'empleados', 
                 key: 'identificador'
             }
         }
