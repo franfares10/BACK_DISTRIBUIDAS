@@ -6,11 +6,8 @@ const router = Router();
 
 
 router.get('/:idEmpleado',[check('idEmpleado').notEmpty(),validarCampos],getEmpleadoById)
-router.get('/',validarCampos,getAllEmpleados)
-router.post('/',[
-                       check('cargo').notEmpty,
-                       check('sector').notEmpty(),
- ,validarCampos],postEmpleados)
+//router.get('/empleados/',[validarCampos],getAllEmpleados)
+router.post('/empleados',[check('cargo').notEmpty(),check('sector').notEmpty(),validarCampos],postEmpleados).get(getAllEmpleados)
 
 
 module.exports = router

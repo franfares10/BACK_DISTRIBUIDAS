@@ -21,10 +21,10 @@ module.exports=(sequelize,type)=>{
         cliente:{
             type: DataTypes.INTEGER,
             allowNull:false,
-            /*references:{
+            references:{
                 model:'clientes',
                 key:'identificador'
-            }*/
+            }
         },
         subasta:{
             type: DataTypes.INTEGER,

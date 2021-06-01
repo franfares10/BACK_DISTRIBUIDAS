@@ -5,16 +5,16 @@ const {createDueño,updateDueño,findAllDueños,findDueñoById} = require('../co
 const router = Router();
 
 
-router.get('/:idDueño',[check('idDueño').notEmpty(),validarCampos],findDueñoById)
-router.get('/',validarCampos,findAllDueños)
-router.post('/dueños',[
-                       check('numeroPais').notEmpty,
+//router.get('/duenios',validarCampos,findAllDueños)
+router.get("/:idDuenio",[check('idDuenio').notEmpty(),validarCampos],findDueñoById)
+router.post('/duenios',[
+                       check('numeroPais').notEmpty(),
                        check('verificacionFinanciera').notEmpty(),
                        check('verificacionJudicial').notEmpty(),
                        check('calificacionRiesgo').notEmpty(),
                        check('verificador').notEmpty()
  ,validarCampos],createDueño)
-router.put('/:idDueño',[check('idDueño').notEmpty(),validarCampos],updateDueño)
-
+router.put('/:idDuenio',[check('idDuenio').notEmpty(),validarCampos],updateDueño)
+//router.get("/acaFunciona",console.log("ACA ENTRO"))
 
 module.exports = router

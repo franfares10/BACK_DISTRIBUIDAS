@@ -29,7 +29,7 @@ module.exports = (sequelize,type)=>{
             defaultValue:'no',
             isIn:[['si'],['no']]
         },
-        califacacionRiesgo:{
+        calificacionRiesgo:{
             type:DataTypes.SMALLINT,
             allowNull:false,
             defaultValue:1,

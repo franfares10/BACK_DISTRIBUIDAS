@@ -49,5 +49,8 @@ module.exports = {
 	RegistroDeSubasta,
 	Subastadores,
 	Foto,
-	sequelize
+	sequelize,
+	Asistentes,
+	Dueños,
+	Empleados
 };
