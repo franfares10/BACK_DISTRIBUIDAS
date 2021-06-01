@@ -1,11 +1,14 @@
 const { response } = require("express");
-const {Catalogo} = require('../database/config');
+const {Catalogo, Subasta} = require('../database/config');
 
 const getCatalogoById = async (req,res = response) => {
 
-    const {id} = req.params;
+    
     try{
-        const catalogo = await Catalogo.findByPk(id);
+        const catalogo = await Catalogo.findAll({
+			include: [{ all: true, nested: true }]
+
+		});
         res.json({
             ok: true,
 			method: 'getCatalogo',
@@ -23,9 +26,10 @@ const getCatalogoById = async (req,res = response) => {
 }
 
 const createCatalogo = async (req, res = response) => {
-	const { descripcion, idResponsable } = req.body;
+	const { idSubasta,descripcion, idResponsable } = req.body;
 	try {
 		const nuevoCatalogo = await Catalogo.create({
+			idSubasta,
 			descripcion,
 			idResponsable
 		});

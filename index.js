@@ -6,7 +6,7 @@ const swaggerUi = require('swagger-ui-express');
 swaggerDocument = require('./swagger.json');
 const formData = require('express-form-data')
 const os = require('os')
-
+require("./models/asociations");
 
 // Express
 const app = express();

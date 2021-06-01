@@ -28,11 +28,11 @@ const getItemsCatalogoByCatalogoId = async(req, res = response) => {
 
 
 const createItemCatalogo = async (req, res = response) => {
-	const { catalogo, producto,precioBase,comision } = req.body;
+	const { catalogoIdCatalogo, productoIdProducto,precioBase,comision } = req.body;
 	try {
 		const itemCatalogo = await ItemCatalogo.create({
-			catalogo,
-            producto,
+			catalogoIdCatalogo,
+            productoIdProducto,
             precioBase,
             comision,
             subastado:false
