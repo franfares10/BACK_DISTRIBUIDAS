@@ -79,8 +79,8 @@ const getRegistrosByIdCliente = async (req,res = response) =>{
 }
 
 const getRegistroActual = async (req,res = response) =>{
-    const {idSubasta} = req.body;
-    const{idProducto} = req.body;
+    const {idSubasta,idProducto} = req.params;
+
 
     try{
         const maximo = await RegistroDeSubasta.max('importe', {where:{

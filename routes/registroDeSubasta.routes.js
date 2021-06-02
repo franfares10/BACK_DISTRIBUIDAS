@@ -8,6 +8,6 @@ router.post('/createRegistroDeSubasta', createRegistroDeSubasta);
 
 router.get('/getRegistrosBySubasta/:id',getRegistrosByIdSubasta);
 router.get('/getRegistrosByCliente/:id',getRegistrosByIdCliente);
-router.get('/getRegistroActual',getRegistroActual);
+router.get('/getRegistroActual/:idSubasta/:idProducto',getRegistroActual);
 
 module.exports = router;
