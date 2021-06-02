@@ -18,6 +18,10 @@ module.exports = (sequelize,type) =>{
             type: type.STRING,
             allowNull:false
         },
+        descripcionLarga:{
+            type:type.STRING,
+            allowNull:false
+        },
         id_revisor:{
             type: type.INTEGER,
             allowNull:false,
