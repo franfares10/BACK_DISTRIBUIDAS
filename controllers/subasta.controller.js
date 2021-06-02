@@ -33,7 +33,7 @@ const getSubastas = async(req, res = reponse) =>{
 
 
 const createSubasta = async (req, res = response) => {
-	const { fecha, id_subastador, categoria,estado } = req.body;
+	const { fecha, id_subastador, categoria,colorCategoria,estado} = req.body;
 	try {
 		console.log(fecha)
 		console.log(id_subastador)
@@ -41,6 +41,7 @@ const createSubasta = async (req, res = response) => {
 			fecha,
 			id_subastador,
 			categoria,
+			colorCategoria,
 			estado
 		});
 		res.json({

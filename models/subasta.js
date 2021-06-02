@@ -21,6 +21,10 @@ module.exports = (sequelize,type) =>{
             type:type.STRING,
             allowNull:false
         },
+        colorCategoria:{
+            type:type.STRING,
+            allowNull:false
+        },
         estado:{
             type:type.STRING,
             allowNull:false
