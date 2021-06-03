@@ -57,5 +57,6 @@ module.exports = {
 	Dueños,
 	Empleados,
 	LightFoto,
+	Cliente,
 	sequelize
 };
