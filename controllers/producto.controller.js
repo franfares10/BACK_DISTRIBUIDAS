@@ -48,12 +48,13 @@ const getProductosByDuenio = async(req, res = response) =>{
 }
 
 const createProducto = async (req, res = response) => {
-	const { fecha, disponible,descripcion,id_revisor,id_duenio } = req.body;
+	const { fecha, disponible,descripcion,descripcionLarga,id_revisor,id_duenio } = req.body;
 	try {
 		const producto = await Producto.create({
 			fecha,
             disponible,
             descripcion,
+            descripcionLarga,
             id_revisor,
             id_duenio
 		});
