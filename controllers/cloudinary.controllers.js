@@ -14,12 +14,12 @@ CLOUDINARY_URL =
 //Configuracion hecha, deberiamos desarrollar los Use Cases.
 
 
-const subirDocumentosDigitales = async (nombreArchivo) => {
+const subirDocumentosDigitales = async (base64) => {
 
   try {
     var resultado = await cloudinary.uploader.upload(
-      nombreArchivo,
-      { public_id: Date.now() }
+      base64,
+      { public_id: Date.now()}
     );
     console.log("Res cloudinary: "+resultado.secure_url)
     return resultado.secure_url;

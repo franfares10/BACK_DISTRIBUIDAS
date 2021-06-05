@@ -46,7 +46,7 @@ const findByCustomQuery = async (req,res = response)=>{
             idCliente:idCliente
             }
         })
-        res.status(201).json({
+        res.status(200).json({
             ok:true,
             result:resultado,
             method: "findByCustomQuery"

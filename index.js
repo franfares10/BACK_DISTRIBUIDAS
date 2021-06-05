@@ -48,6 +48,7 @@ app.use('/api/subastadores', require('./routes/subastadores.routes'));
 app.use('/api/empleados',require('./routes/empleados.routes'))
 app.use('/api/fotos',require('./routes/foto.routes'));
 app.use('/api/asistentes',require('./routes/asistentes.routes'))
+app.use('/api/cloudinary',require('./routes/cloudinary.routes'))
 
 app.listen(process.env.PORT, () => {
     console.log('Example app listening on port ' + process.env.PORT);
