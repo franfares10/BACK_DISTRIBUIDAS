@@ -45,9 +45,10 @@ const findAllDueños= async (req,res = response)=>{
 }
 
 const createDueño=async(req,res = response)=>{
-    const {numeroPais,verificacionFinanciera,verificacionJudicial,calificacionRiesgo,verificador} = req.body
+    const {identificador, numeroPais,verificacionFinanciera,verificacionJudicial,calificacionRiesgo,verificador} = req.body
     try{
         const postResutl = await Dueños.create({
+            identificador,
             numeroPais,
             verificacionFinanciera,
             verificacionJudicial,
