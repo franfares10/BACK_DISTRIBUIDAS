@@ -42,7 +42,7 @@ const findByCustomQuery = async (req,res = response)=>{
     try{
         //Agregar logica  del where por la validacion distintos de verdadero
         const resultado= await MedioDePago.findAll({where:
-            {isValidated:false,
+            {isValidated:true,
             idCliente:idCliente
             }
         })
