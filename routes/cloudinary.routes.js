@@ -4,6 +4,6 @@ const { validarCampos } = require('../middlewares/validar-campos');
 const {subirDocumentosDigitales} = require("../controllers/cloudinary.controllers")
 const router  = Router();
 
-router.post("/uploadCloudinary",[check('base64').notEmpty(),validarCampos],subirDocumentosDigitales)
+router.post("/uploadCloudinary",subirDocumentosDigitales)
 
 module.exports = router
