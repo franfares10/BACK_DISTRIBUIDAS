@@ -24,7 +24,7 @@ const getClienteById = async (req, res = response) => {
 const login = async (req, res = response) => {
 	const { mail, password } = req.body;
 	try {
-		const cliente = await Cliente.findOne({ mail: mail });
+		const cliente = await Cliente.findOne({ where: { mail: mail } });
 		if (password !== cliente.password) {
 			res.status(401).json({
 				ok: false,

@@ -83,9 +83,27 @@ const getFotosByProducto = async (req, res = response) => {
   }
 };
 
-
-
-
+const createFotoWithBase64 = async (req, res = response) => {
+  const { idProducto, url } = req.body;
+  try {
+    const nuevaLightFoto = await LightFoto.create({
+      idProducto,
+      referencia_url: url
+    });
+    res.json({
+      ok: true,
+      method: "createFotoWithBase64",
+      foto: nuevaLightFoto
+    });
+  } catch (error) {
+    console.log(err);
+    res.status(500).json({
+      ok: false,
+      method: "createFotoWithBase64",
+      msg: "An unexpected error has occurred.",
+    });
+  }
+}
 
 const directory = './storage/imgs';
 const scheduledJob=nodeSchedule.scheduleJob('30 * * * *',function borrar() {
@@ -107,4 +125,5 @@ const scheduledJob=nodeSchedule.scheduleJob('30 * * * *',function borrar() {
 module.exports = {
   createFoto,
   getFotosByProducto,
+  createFotoWithBase64
 };

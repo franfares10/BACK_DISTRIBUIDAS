@@ -1,4 +1,3 @@
-const { createFoto } = require("./foto.controller");
 var cloudinary = require("cloudinary").v2;
 
 _this = this;
@@ -14,18 +13,23 @@ CLOUDINARY_URL =
 //Configuracion hecha, deberiamos desarrollar los Use Cases.
 
 
-const subirDocumentosDigitales = async (nombreArchivo) => {
-
+const subirDocumentosDigitales = async (req, res) => {
+  const { base64 } = req.body;
   try {
     var resultado = await cloudinary.uploader.upload(
-      nombreArchivo,
+      base64,
       { public_id: Date.now() }
     );
-    console.log("Res cloudinary: "+resultado.secure_url)
-    return resultado.secure_url;
-
+    console.log("Res cloudinary: " + resultado.secure_url)
+    res.status(200).json({
+      url: resultado.secure_url
+    })
   } catch (e) {
     console.log("Error", e);
+    res.status(500).json({
+      errorOcurred: e,
+      method: 'subirDocumentosDigitales'
+  })
   }
 };
 

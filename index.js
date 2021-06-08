@@ -15,7 +15,7 @@ const app = express();
 app.use(cors());
 app.use(express.static('public'));
 // Request's Body parsing
-app.use(express.json());
+app.use(express.json({ limit: '50mb' }));
 //app.use(formData.parse({uploadDir:os.tmpdir(),autoClean:true}))
 //app.use(formData.union())
 
@@ -37,17 +37,18 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 // Paths
 app.use('/api/personas', require('./routes/persona.routes'));
 app.use('/api/clientes', require('./routes/cliente.routes'));
-app.use('/api/mediosdepago',require('./routes/medioDePago.routes'))
-app.use('/api/catalogos',require('./routes/catalogo.routes'))
-app.use('/api/subastas',require('./routes/subasta.routes'));
-app.use('/api/owners',require('./routes/dueños.routes'))
-app.use('/api/itemsCatalogo',require('./routes/itemCatalogo.routes'));
-app.use('/api/productos',require('./routes/producto.routes'));
-app.use('/api/registrosDeSubasta',require('./routes/registroDeSubasta.routes'));
+app.use('/api/mediosdepago', require('./routes/medioDePago.routes'))
+app.use('/api/catalogos', require('./routes/catalogo.routes'))
+app.use('/api/subastas', require('./routes/subasta.routes'));
+app.use('/api/owners', require('./routes/dueños.routes'))
+app.use('/api/itemsCatalogo', require('./routes/itemCatalogo.routes'));
+app.use('/api/productos', require('./routes/producto.routes'));
+app.use('/api/registrosDeSubasta', require('./routes/registroDeSubasta.routes'));
 app.use('/api/subastadores', require('./routes/subastadores.routes'));
-app.use('/api/empleados',require('./routes/empleados.routes'))
-app.use('/api/fotos',require('./routes/foto.routes'));
-app.use('/api/asistentes',require('./routes/asistentes.routes'))
+app.use('/api/empleados', require('./routes/empleados.routes'))
+app.use('/api/fotos', require('./routes/foto.routes'));
+app.use('/api/asistentes', require('./routes/asistentes.routes'))
+app.use('/api/cloudinary', require('./routes/cloudinary.routes'))
 
 app.listen(process.env.PORT, () => {
     console.log('Example app listening on port ' + process.env.PORT);
