@@ -23,6 +23,20 @@ const findMPbyId=async (req ,res = response)=>{
     }
 }
 
+const getAllActivePM= async (idCliente)=>{
+    try{
+        const resultado = await MedioDePago.findAll({where:{
+            idCliente: idCliente,
+            isValidated:true
+        }})
+        return resultado;
+    }catch(error){
+        res.status(500).json({
+            error
+        })
+    }
+}
+
 const checkParamsBeforeInsert= async (cardNumber,idCliente)=>{
     try{
         const resultado = await MedioDePago.findAll({where:{
@@ -173,6 +187,7 @@ module.exports = {
     deletePM,
     postMP,
     updatePm,
-    findByCustomQuery
+    findByCustomQuery,
+    getAllActivePM
 
 }

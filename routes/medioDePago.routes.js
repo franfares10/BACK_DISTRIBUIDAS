@@ -1,6 +1,6 @@
 const {Router} = require('express')
 const {check} = require('express-validator')
-const {findMPbyId,updatePm,deletePM,postMP,findByCustomQuery} = require('../controllers/medioDePago.controller')
+const {findMPbyId,updatePm,deletePM,postMP,findByCustomQuery,getAllActivePM} = require('../controllers/medioDePago.controller')
 const {validarCampos} = require('../middlewares/validar-campos')
 const router = Router();
 
@@ -15,7 +15,7 @@ router.get("/paymentMethod/:idCliente/:cardNumber",
 router.post('/paymentMethod',[],postMP)
 
 router.get('/paymentMethod/:idCliente',[],findByCustomQuery)
-
+router.get('paymentMethod/:idCliente',getAllActivePM);
 //DELETE /paymentMethod/{idCliente}/{cardNumber}
 //PUT /paymentMethod/{idCliente}/{cardNumber}
 //La cosa es que se le pone copmo ruta, checks, y llamado que hacen.
