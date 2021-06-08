@@ -15,7 +15,7 @@ router.get("/paymentMethod/:idCliente/:cardNumber",
 router.post('/paymentMethod',[],postMP)
 
 router.get('/paymentMethod/:idCliente',[],findByCustomQuery)
-router.get('paymentMethod/:idCliente',getAllActivePM);
+router.get('paymentMethod/getAllActivePM/:idCliente',getAllActivePM);
 //DELETE /paymentMethod/{idCliente}/{cardNumber}
 //PUT /paymentMethod/{idCliente}/{cardNumber}
 //La cosa es que se le pone copmo ruta, checks, y llamado que hacen.
