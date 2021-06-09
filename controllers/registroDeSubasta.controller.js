@@ -1,6 +1,7 @@
 
 const { response } = require("express");
 const {RegistroDeSubasta,sequelize} = require('../database/config');
+const Sequelize = require('sequelize');
 
 const createRegistroDeSubasta = async(req, res = response) =>{
     const {subasta,duenio,producto,cliente,importe,comision} = req.body;
@@ -52,6 +53,34 @@ const getRegistrosByIdSubasta = async (req,res = response) =>{
 		});
     }
 }
+
+/* const getRegistrosByIdCliente = async (req,res = response) =>{
+    const {id} = req.params;
+
+    try{
+        const listaDeRegistros = await RegistroDeSubasta.findAll({
+            where:{
+                cliente:id
+            },
+			attributes: [
+				[Sequelize.fn('DISTINCT', Sequelize.col('producto')) ,'producto'],
+			]
+        })
+
+        res.json({
+			ok: true,
+			method: 'getRegistrosByIdCliente',
+			listaPujasDeCliente: listaDeRegistros
+		});
+	} catch (error) {
+		console.log(error);
+		res.status(500).json({
+			ok: false,
+			method: 'getRegistrosByIdCliente',
+			msg: 'An unexpected error has occurred.'
+		});
+    }
+} */
 
 const getRegistrosByIdCliente = async (req,res = response) =>{
     const {id} = req.params;

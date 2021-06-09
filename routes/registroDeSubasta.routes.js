@@ -6,7 +6,7 @@ const router = Router();
 
 router.post('/createRegistroDeSubasta', createRegistroDeSubasta);
 
-router.get('/getRegistrosBySubasta/:id',getRegistrosByIdSubasta);
+router.get('/getRegistrosBySubasta/:idSubasta/:idCliente',getRegistrosByIdSubasta);
 router.get('/getRegistrosByCliente/:id',getRegistrosByIdCliente);
 router.get('/getRegistroActual/:idSubasta/:idProducto',getRegistroActual);
 
