@@ -126,8 +126,11 @@ const deletePM  = async (req, res = response)=>{
                 idCliente: idCliente
             }
         })
-        res.status(200).json({
+        const tarjetasCliente = await MedioDePago.findAll({where:{idCliente:idCliente}})
+        console.log("Tarjetas del cliente que trae después del delete"+tarjetasCliente)
+        res.status(200).json({ 
             message:"Medio de pago borrado correctamente",
+            cardsList: tarjetasCliente,
             method: 'deletePaymentMethod'
         })
     }catch(error){
