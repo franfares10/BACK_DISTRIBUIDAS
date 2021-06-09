@@ -22,7 +22,25 @@ const findMPbyId=async (req ,res = response)=>{
         })
     }
 }
-
+/*
+const getAllActivePM = async (req,res = response)=>{
+    const {idCliente} = req.params;
+    try{
+        const resultado = await MedioDePago.findAll({where:{
+            idCliente: idCliente,
+            isValidated:true
+        }})
+        res.status(200).json({
+            medios: resultado,
+            method:"getAllActivePM"
+        })
+    }catch(error){
+        res.status(500).json({
+            error
+        })
+    }
+}
+*/
 const checkParamsBeforeInsert= async (cardNumber,idCliente)=>{
     try{
         const resultado = await MedioDePago.findAll({where:{
@@ -64,7 +82,7 @@ const postMP= async (req, res = response)=>{
     try{
         const checkedParams = await checkParamsBeforeInsert(cardNumber,idCliente);
         console.log(checkedParams)
-        if(checkedParams[0]===undefined){
+        if(checkedParams.length===0){
             const pmPost = await MedioDePago.create({
                 cardNumber,
                 expiryDate,
