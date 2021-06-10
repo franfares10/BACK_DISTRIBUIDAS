@@ -30,12 +30,13 @@ const createRegistroDeSubasta = async(req, res = response) =>{
 }
 
 const getRegistrosByIdSubasta = async (req,res = response) =>{
-    const {idSubasta, idCliente} = req.params;
+    const {idSubasta, idCliente, idProducto} = req.params;
     try{
         const listaDeRegistros = await RegistroDeSubasta.findAll({
             where:{
 				cliente: idCliente,
-				subasta: idSubasta
+				subasta: idSubasta,
+				producto: idProducto
             }
         })
 
