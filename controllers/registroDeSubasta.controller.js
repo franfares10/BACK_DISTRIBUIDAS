@@ -54,7 +54,7 @@ const getRegistrosByIdSubasta = async (req,res = response) =>{
     }
 }
 
-/* const getRegistrosByIdCliente = async (req,res = response) =>{
+ const getRegistrosByIdCliente = async (req,res = response) =>{
     const {id} = req.params;
 
     try{
@@ -63,7 +63,9 @@ const getRegistrosByIdSubasta = async (req,res = response) =>{
                 cliente:id
             },
 			attributes: [
-				[Sequelize.fn('DISTINCT', Sequelize.col('producto')) ,'producto'],
+				Sequelize.fn('DISTINCT', Sequelize.col('producto')),
+				'producto',
+				'subasta'
 			]
         })
 
@@ -80,8 +82,8 @@ const getRegistrosByIdSubasta = async (req,res = response) =>{
 			msg: 'An unexpected error has occurred.'
 		});
     }
-} */
-
+} 
+/*
 const getRegistrosByIdCliente = async (req,res = response) =>{
     const {id} = req.params;
 
@@ -105,7 +107,7 @@ const getRegistrosByIdCliente = async (req,res = response) =>{
 			msg: 'An unexpected error has occurred.'
 		});
     }
-}
+}*/
 
 const getRegistroActual = async (req,res = response) =>{
     const {idSubasta,idProducto} = req.params;
