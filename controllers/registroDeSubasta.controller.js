@@ -30,12 +30,12 @@ const createRegistroDeSubasta = async(req, res = response) =>{
 }
 
 const getRegistrosByIdSubasta = async (req,res = response) =>{
-    const {id} = req.params;
-
+    const {idSubasta, idCliente} = req.params;
     try{
         const listaDeRegistros = await RegistroDeSubasta.findAll({
             where:{
-                subasta:id
+				cliente: idCliente,
+				subasta: idSubasta
             }
         })
 
@@ -54,33 +54,6 @@ const getRegistrosByIdSubasta = async (req,res = response) =>{
     }
 }
 
-/* const getRegistrosByIdCliente = async (req,res = response) =>{
-    const {id} = req.params;
-
-    try{
-        const listaDeRegistros = await RegistroDeSubasta.findAll({
-            where:{
-                cliente:id
-            },
-			attributes: [
-				[Sequelize.fn('DISTINCT', Sequelize.col('producto')) ,'producto'],
-			]
-        })
-
-        res.json({
-			ok: true,
-			method: 'getRegistrosByIdCliente',
-			listaPujasDeCliente: listaDeRegistros
-		});
-	} catch (error) {
-		console.log(error);
-		res.status(500).json({
-			ok: false,
-			method: 'getRegistrosByIdCliente',
-			msg: 'An unexpected error has occurred.'
-		});
-    }
-} */
 
 const getRegistrosByIdCliente = async (req,res = response) =>{
     const {id} = req.params;
