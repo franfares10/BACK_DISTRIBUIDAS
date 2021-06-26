@@ -56,6 +56,7 @@ const getRegistrosByIdSubasta = async (req,res = response) =>{
 }
 
 
+
 const getRegistrosByIdCliente = async (req,res = response) =>{
     const {id} = req.params;
 
@@ -76,6 +77,29 @@ const getRegistrosByIdCliente = async (req,res = response) =>{
 		res.status(500).json({
 			ok: false,
 			method: 'getRegistrosByIdCliente',
+			msg: 'An unexpected error has occurred.'
+		});
+    }
+}
+
+const getUltimaPujaCliente = async (req,res = response) =>{
+    const {idCliente, idSubasta, idProducto} = req.params;
+    try{
+		const maximo = await RegistroDeSubasta.max('importe', {where:{
+            cliente: idCliente,
+			subasta: idSubasta,
+			producto: idProducto
+        }});
+        res.json({
+			ok: true,
+			method: 'getUltimaPujaCliente',
+			ultimaPuja: maximo
+		});
+	} catch (error) {
+		console.log(error);
+		res.status(500).json({
+			ok: false,
+			method: 'getUltimaPujaCliente',
 			msg: 'An unexpected error has occurred.'
 		});
     }
@@ -113,5 +137,6 @@ module.exports = {
     createRegistroDeSubasta,
     getRegistrosByIdSubasta,
     getRegistrosByIdCliente,
-    getRegistroActual
+    getRegistroActual,
+	getUltimaPujaCliente
 }
