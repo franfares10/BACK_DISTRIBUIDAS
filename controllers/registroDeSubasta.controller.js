@@ -129,7 +129,28 @@ const getRegistroActual = async (req,res = response) =>{
 		});
     }
 }
-
+const getImporteMaximo = async (req,res = response) =>{
+    const {idSubasta,idProducto} = req.params;
+    try{
+        const maximo = await RegistroDeSubasta.max('importe', {where:{
+            subasta:idSubasta,
+            producto:idProducto
+        }});
+    
+        res.json({
+			ok: true,
+			method: 'getImporteMaximo',
+			ultimaPuja: maximo
+		});
+	} catch (error) {
+		console.log(error);
+		res.status(500).json({
+			ok: false,
+			method: 'getImporteMaximo',
+			msg: 'An unexpected error has occurred.'
+		});
+    }
+}
 
 
 
@@ -138,5 +159,6 @@ module.exports = {
     getRegistrosByIdSubasta,
     getRegistrosByIdCliente,
     getRegistroActual,
-	getUltimaPujaCliente
+	getUltimaPujaCliente,
+	getImporteMaximo
 }
