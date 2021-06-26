@@ -93,7 +93,10 @@ const getUltimaPujaCliente = async (req,res = response) =>{
         res.json({
 			ok: true,
 			method: 'getUltimaPujaCliente',
-			ultimaPuja: maximo
+			ultimaPuja: maximo,
+			idCliente:idCliente,
+			idSubasta:idSubasta,
+			idProducto: idProducto
 		});
 	} catch (error) {
 		console.log(error);
