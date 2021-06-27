@@ -63,7 +63,7 @@ const getFotosByProducto = async (req, res = response) => {
   const { id } = req.params;
 
   try {
-    const fotos = await Foto.findAll({
+    const fotos = await LightFoto.findAll({
       where: {
         idProducto: id,
       },

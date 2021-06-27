@@ -1,6 +1,7 @@
 
 const { response } = require("express");
 const {RegistroDeSubasta,sequelize} = require('../database/config');
+const Sequelize = require('sequelize');
 
 const createRegistroDeSubasta = async(req, res = response) =>{
     const {subasta,duenio,producto,cliente,importe,comision} = req.body;
@@ -29,12 +30,13 @@ const createRegistroDeSubasta = async(req, res = response) =>{
 }
 
 const getRegistrosByIdSubasta = async (req,res = response) =>{
-    const {id} = req.params;
-
+    const {idSubasta, idCliente, idProducto} = req.params;
     try{
         const listaDeRegistros = await RegistroDeSubasta.findAll({
             where:{
-                subasta:id
+				cliente: idCliente,
+				subasta: idSubasta,
+				producto: idProducto
             }
         })
 
@@ -52,6 +54,8 @@ const getRegistrosByIdSubasta = async (req,res = response) =>{
 		});
     }
 }
+
+
 
 const getRegistrosByIdCliente = async (req,res = response) =>{
     const {id} = req.params;
@@ -73,6 +77,29 @@ const getRegistrosByIdCliente = async (req,res = response) =>{
 		res.status(500).json({
 			ok: false,
 			method: 'getRegistrosByIdCliente',
+			msg: 'An unexpected error has occurred.'
+		});
+    }
+}
+
+const getUltimaPujaCliente = async (req,res = response) =>{
+    const {idCliente, idSubasta, idProducto} = req.params;
+    try{
+		const maximo = await RegistroDeSubasta.max('importe', {where:{
+            cliente: idCliente,
+			subasta: idSubasta,
+			producto: idProducto
+        }});
+        res.json({
+			ok: true,
+			method: 'getUltimaPujaCliente',
+			ultimaPuja: maximo
+		});
+	} catch (error) {
+		console.log(error);
+		res.status(500).json({
+			ok: false,
+			method: 'getUltimaPujaCliente',
 			msg: 'An unexpected error has occurred.'
 		});
     }
@@ -102,7 +129,28 @@ const getRegistroActual = async (req,res = response) =>{
 		});
     }
 }
-
+const getImporteMaximo = async (req,res = response) =>{
+    const {idSubasta,idProducto} = req.params;
+    try{
+        const maximo = await RegistroDeSubasta.max('importe', {where:{
+            subasta:idSubasta,
+            producto:idProducto
+        }});
+    
+        res.json({
+			ok: true,
+			method: 'getImporteMaximo',
+			ultimaPuja: maximo
+		});
+	} catch (error) {
+		console.log(error);
+		res.status(500).json({
+			ok: false,
+			method: 'getImporteMaximo',
+			msg: 'An unexpected error has occurred.'
+		});
+    }
+}
 
 
 
@@ -110,5 +158,7 @@ module.exports = {
     createRegistroDeSubasta,
     getRegistrosByIdSubasta,
     getRegistrosByIdCliente,
-    getRegistroActual
+    getRegistroActual,
+	getUltimaPujaCliente,
+	getImporteMaximo
 }
