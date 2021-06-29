@@ -1,18 +1,21 @@
 const nodemailer = require("nodemailer");
 
-const acceptedUser = (nombreCliente,otpCliente)=> {return `Bienvenido ${nombreCliente}, fuiste aceptado en BetFast. Inicia sesión con este código para continuar tu proceso de registro ${otpCliente}`;}
+const acceptedUser = (otpCliente)=> {return `Bienvenido a BETFAST!, fuiste aceptado. Inicia sesión con este código para continuar tu proceso de registro ${otpCliente}`;}
 
 const notAcceptedUser =(nombreCliente)=> {return `Buen día ${nombreCliente}, lamentamos informarte que no fuiste aceptado en la aplicación BET-FAST. Si crees que hubo algún error comunicate con la empresa de manera directa.`;}
 
 const mandarMail = async (caseCliente, mailCliente, otpCliente) => {
   let mailTransport = nodemailer.createTransport({
-    //host: "smtp.gmail.com",
+    host: "smtp.gmail.com",
     port: 25,
-    service: "Gmail",
+    service: "gmail",
     auth: {
       user: process.env.mail,
       pass: process.env.passMail,
     },
+    tls:{
+      rejectUnauthorized:false
+    }
   });
   let mailMandado = "";
   try {
@@ -22,8 +25,7 @@ const mandarMail = async (caseCliente, mailCliente, otpCliente) => {
           from: process.env.mail,
           to: mailCliente,
           subject: "BETFAST- AVISO DE REGISTRO",
-          text: acceptedUser(),
-          html: "<h1>BETFAST</h1>"
+          html: "<h1>BETFAST</h1>"+acceptedUser(otpCliente)
         });
         break;
       case "RECHAZADO":

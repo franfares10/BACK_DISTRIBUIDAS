@@ -12,6 +12,7 @@ module.exports = (sequelize, type) => {
 		admitido: type.STRING,
 		categoria: type.STRING,
 		mail: type.STRING,
-		password: type.STRING
+		password: type.STRING,
+        otpCliente: type.STRING
 	});
 }
