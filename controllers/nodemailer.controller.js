@@ -14,10 +14,11 @@ const mandarMail = async (caseCliente, mailCliente, otpCliente) => {
       pass: process.env.passMail,
     },
   });
+  let mailMandado = "";
   try {
     switch (caseCliente) {
       case "ACEPTADO":
-        let mailMandado = await mailTransport.sendMail({
+        mailMandado = await mailTransport.sendMail({
           from: process.env.mail,
           to: mailCliente,
           subject: "BETFAST- AVISO DE REGISTRO",
@@ -26,7 +27,7 @@ const mandarMail = async (caseCliente, mailCliente, otpCliente) => {
         });
         break;
       case "RECHAZADO":
-        let mailMandado = await mailTransport.sendMail({
+        mailMandado = await mailTransport.sendMail({
           from: "",
           to: mailCliente,
           subject: "BETFAST- AVISO DE REGISTRO",
