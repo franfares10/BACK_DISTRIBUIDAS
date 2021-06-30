@@ -54,7 +54,27 @@ const checkParamsBeforeInsert= async (cardNumber,idCliente)=>{
         })
     }
 }
+const getAllCards= async (req,res = response)=>{
+    const {idCliente} = req.params
+    try{
+        //Agregar logica  del where por la validacion distintos de verdadero
+        const resultado= await MedioDePago.findAll({where:
+            {
+                idCliente:idCliente
+            }
+        })
+        res.status(200).json({
+            ok:true,
+            result:resultado,
+            method: "findByCustomQuery"
+        })
+    }catch(error){
+        res.status(500).json({
+            errorOcurred:error,
 
+        })
+    }
+}
 const findByCustomQuery = async (req,res = response)=>{
     const {idCliente} = req.params
     try{
@@ -194,6 +214,7 @@ module.exports = {
     deletePM,
     postMP,
     updatePm,
-    findByCustomQuery
+    findByCustomQuery,
+    getAllCards
 
 }
