@@ -15,7 +15,7 @@ const asistentesModel = require('../models/asistentes')
 const empleadosModel = require('../models/empleados')
 const lightFotoModel = require('../models/lightFoto');
 
-const sequelize = new Sequelize(`dywm8g83d72lqe2f`, 'j5gmdrbbpderlaut', 'd60s4wm3cdsb2wha', {
+const sequelize = new Sequelize(`dywm8g83d72lqe2f`, 'j5gmdrbbpderlaut', 'vwa1ds6hbtf9p3rv', {
 	host: 'bmlx3df4ma7r1yh4.cbetxkdyhwsb.us-east-1.rds.amazonaws.com',
 	dialect: 'mysql'
 });
