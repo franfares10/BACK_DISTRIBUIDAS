@@ -20,18 +20,6 @@ Once the dependencies are installed, use this command to run the server on the d
 npm run start
 ```
 
-<!-- ## MongoDB Database
-
-Our database is implemented using MongoDB, a NoSQL database system. It is deployed in [Mongo Atlas](https://www.mongodb.com/cloud/atlas), a global cloud database service for modern applications.
-To access it you can use [Mongo Compass](https://www.mongodb.com/products/compass), the GUI for MongoDB.
-We provide you with the following connection string to access the records and collections of the database with read-only permission through Mongo Compass:
-```bash
-mongodb+srv://readOnly:readOnly@cluster0.iafee.mongodb.net/appInteractivasDataBase
-``` -->
-
-## API Docs
-
-If you want to view the API documentation [click here!](https://distribuidas-backend.herokuapp.com/api-docs/)
 
 ## Authors
 - Lautaro Mitelman

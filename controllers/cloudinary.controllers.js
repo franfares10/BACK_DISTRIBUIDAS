@@ -13,14 +13,16 @@ CLOUDINARY_URL =
 //Configuracion hecha, deberiamos desarrollar los Use Cases.
 
 
-const subirDocumentosDigitales = async (req, res) => {
-  const { base64 } = req.body;
+const subirDocumentosDigitales = async (fileName) => {
+  
   try {
     var resultado = await cloudinary.uploader.upload(
-      base64,
+      fileName,
       { public_id: Date.now() }
     );
     console.log("Res cloudinary: " + resultado.secure_url)
+    return resultado.secure_url;
+    /*
     res.status(200).json({
       url: resultado.secure_url
     })
@@ -30,7 +32,10 @@ const subirDocumentosDigitales = async (req, res) => {
       errorOcurred: e,
       method: 'subirDocumentosDigitales'
   })
-  }
+  }*/
+}catch( e){
+  console.log(e)
+}
 };
 
 

@@ -24,7 +24,7 @@ const createFoto = async (req, res = response) => {
     //console.log("Nueva foto id:" + nuevaFoto.idFoto);
     //console.log("Nueva product id:" + nuevaFoto.idProducto);
 
-    var imprimir = await updateFoto(resultado,nuevaFoto.idFoto,nuevaFoto.idProducto)
+    //var imprimir = await updateFoto(resultado,nuevaFoto.idFoto,nuevaFoto.idProducto)
     var light = await updateFoto(resultado,nuevaLightFoto.idFoto,nuevaLightFoto.idProducto);
     
     res.json({
