@@ -10,8 +10,8 @@ const mandarMail = async (caseCliente, mailCliente, otpCliente) => {
     port: 25,
     service: "gmail",
     auth: {
-      user: process.env.mail,
-      pass: process.env.passMail,
+      user: 'betfast.enterprise@gmail.com',
+      pass: 'FrIvLaVa2021FirstCuatri',
     },
     tls:{
       rejectUnauthorized:false
