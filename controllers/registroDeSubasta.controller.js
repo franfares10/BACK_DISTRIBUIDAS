@@ -114,11 +114,18 @@ const getRegistroActual = async (req,res = response) =>{
             subasta:idSubasta,
             producto:idProducto
         }});
-    
+		
+		const cliente = await RegistroDeSubasta.findOne({
+			where:{
+				importe:maximo
+			}
+		})
         res.json({
 			ok: true,
 			method: 'getRegistroActual',
-			pujaActual: maximo
+			pujaActual: maximo,
+			cliente:cliente.cliente
+			
 		});
 	} catch (error) {
 		console.log(error);
